@@ -1,0 +1,71 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-3-30 14:36:42
+ * @LastEditTime: 2022-05-20 15:25:23
+ * @LastEditors: 关广强 ggq@jsszkd.com
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /KD-API-DOCS/public/md/api/获取场景列表.md
+-->
+## 基础功能
+### 生命体
+
+#### API名称：
+根据经纬度坐标设置2D POI屏幕坐标
+#### 功能描述：
+
+调用经纬度转屏幕坐标并作用于2D POI
+
+#### 渲染示例：
+
+#### 调用方法：
+
+##### ES6 Modules
+``` javascript
+import { SceneModel } from 'kd-api/lib'
+
+SceneModel.set2DPOILocation(jsondata)
+.then((res)=>{
+    // 在场景中创建⽣命体成功
+    console.log(res)
+})
+.catch((err)=>{})
+```
+
+##### Script 标签
+``` javascript
+window.KdApi.SceneModel.set2DPOILocation(jsondata)
+.then((res)=>{
+    // 在场景中创建⽣命体成功
+    console.log(res)
+})
+.catch((err)=>{})
+```
+
+
+#### 数据格式：
+
+```javascript
+let jsondata = [{
+    uuid: 'xxxx_xxxx',
+    coord:{
+        longitude: '53.22',
+        latitude: '53.22',
+        height: '10.00'
+    } // 位置
+}]
+```
+##### 参数描述：
+
+| 属性      | 类型     | 是否必填 | 说明     |
+|---------|--------|------|--------|
+| uuid   | String | Y    | 生命体uuid |
+| coord.longitude | String      | Y    | 位置信息:经度   |
+| coord.latitude    | String | Y    | 位置信息:纬度   |
+| coord.height    | String | Y    | 位置信息:高度   |
+
+##### 回调参数描述：
+| 属性      | 类型   | 说明                     |
+|---------| ------ | ------------------------ |
+| code    | Number | 200: 成功,500：失败  |
+| message | String | 成功或者失败原因  |
+| data    | Array[String] | 新创建的生命体ID列表  |
